@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: opportunity-hunter-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: MODEL_REASONER
+        value: openai/gpt-oss-120b
+      - key: MODEL_PARSER
+        value: mistralai/mistral-large-2512
+      - key: MODEL_ORCHESTRATOR
+        value: minimax/minimax-m3
