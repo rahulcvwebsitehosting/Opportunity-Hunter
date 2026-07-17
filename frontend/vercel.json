@@ -4,7 +4,6 @@
   "framework": "nextjs",
   "installCommand": "npm install",
   "outputDirectory": ".next",
-  "public": false,
   "regions": ["iad1"],
   "rewrites": []
 }
