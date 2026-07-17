@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# Build
+.next/
+dist/
+build/
+
+# Env
+.env
+
+# Temp
+*.pdf
+temp_*
+*.json
+!package.json
+!tsconfig.json
+!components.json
+test_*.json
+
+# OS
+.DS_Store
+Thumbs.db
