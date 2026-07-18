@@ -103,27 +103,28 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
 
   return (
     <div className="min-h-screen">
-      {/* Sticky header */}
+      {/* Sticky header — light glass */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="sticky top-0 z-40 glass-strong border-b border-white/5"
+        className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-violet-100"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center glow-primary">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center ai-glow" aria-hidden="true">
               <Crosshair className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-base sm:text-lg">Opportunity Hunter</span>
+            <span className="font-bold text-base sm:text-lg text-foreground">Opportunity Hunter</span>
           </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => window.location.reload()}
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground cursor-pointer"
+            aria-label="Create new profile"
           >
-            <LogOut className="w-4 h-4" /> <span className="hidden sm:inline">New Profile</span>
+            <LogOut className="w-4 h-4" aria-hidden="true" /> <span className="hidden sm:inline">New Profile</span>
           </Button>
         </div>
       </motion.header>
@@ -135,50 +136,46 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Card className="glass-strong rounded-2xl p-5 sm:p-7 border-white/10">
+          <Card className="bg-white rounded-2xl p-5 sm:p-7 border-violet-100 shadow-sm">
             <div className="flex flex-col md:flex-row md:items-start gap-6">
-              {/* Avatar */}
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 via-indigo-500 to-blue-500 flex items-center justify-center text-2xl font-bold text-white glow-primary">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 via-indigo-500 to-cyan-500 flex items-center justify-center text-2xl font-bold text-white ai-glow" aria-hidden="true">
                   {profile.name?.charAt(0) || "?"}
                 </div>
               </div>
 
-              {/* Profile content */}
               <div className="flex-1 min-w-0">
-                <h2 className="text-2xl font-bold">{profile.name || "Anonymous"}</h2>
+                <h2 className="text-2xl font-bold text-foreground">{profile.name || "Anonymous"}</h2>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-sm text-muted-foreground">
                   {profile.location && (
                     <span className="inline-flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5" /> {profile.location}
+                      <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {profile.location}
                     </span>
                   )}
                   {profile.education[0] && (
                     <span className="inline-flex items-center gap-1">
-                      <GraduationCap className="w-3.5 h-3.5" />
+                      <GraduationCap className="w-3.5 h-3.5" aria-hidden="true" />
                       {profile.education[0].degree} · {profile.education[0].institution}
                     </span>
                   )}
                   {profile.experience[0]?.role && (
                     <span className="inline-flex items-center gap-1">
-                      <Briefcase className="w-3.5 h-3.5" /> {profile.experience[0].role}
+                      <Briefcase className="w-3.5 h-3.5" aria-hidden="true" /> {profile.experience[0].role}
                     </span>
                   )}
                 </div>
 
                 {/* Skills */}
                 <div className="mt-4">
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                    Skills
-                  </p>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Skills</p>
                   <div className="flex flex-wrap gap-1.5">
                     {profile.skills.map((skill, i) => (
                       <motion.span
                         key={i}
-                        initial={{ opacity: 0, scale: 0.8 }}
+                        initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.3 + i * 0.05 }}
-                        className="px-2.5 py-1 bg-violet-500/15 text-violet-300 rounded-md text-xs font-medium border border-violet-500/20"
+                        className="px-2.5 py-1 bg-violet-100 text-violet-700 rounded-md text-xs font-medium border border-violet-200"
                       >
                         {skill}
                       </motion.span>
@@ -189,14 +186,12 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
                 {/* Interests */}
                 {profile.interests.length > 0 && (
                   <div className="mt-3">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                      Interests
-                    </p>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Interests</p>
                     <div className="flex flex-wrap gap-1.5">
                       {profile.interests.map((interest, i) => (
                         <span
                           key={i}
-                          className="px-2.5 py-1 bg-blue-500/15 text-blue-300 rounded-md text-xs font-medium border border-blue-500/20"
+                          className="px-2.5 py-1 bg-cyan-50 text-cyan-700 rounded-md text-xs font-medium border border-cyan-200"
                         >
                           {interest}
                         </span>
@@ -220,15 +215,20 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
             onClick={runHunter}
             disabled={hunting}
             size="lg"
-            className="h-12 px-6 font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 glow-primary"
+            className="h-12 px-6 font-semibold bg-violet-600 hover:bg-violet-700 ai-glow cursor-pointer"
           >
             {hunting ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" /> Hunting...
+                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Hunting
+                <span className="flex gap-1 items-center" aria-hidden="true">
+                  <span className="typing-dot"></span>
+                  <span className="typing-dot"></span>
+                  <span className="typing-dot"></span>
+                </span>
               </>
             ) : (
               <>
-                <Crosshair className="w-4 h-4" /> Run Hunter Agent
+                <Crosshair className="w-4 h-4" aria-hidden="true" /> Run Hunter Agent
               </>
             )}
           </Button>
@@ -236,13 +236,13 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
             onClick={loadStored}
             variant="outline"
             size="lg"
-            className="h-12 px-6 border-border bg-white/[0.02] hover:bg-white/[0.05]"
+            className="h-12 px-6 border-violet-200 bg-white hover:bg-violet-50 text-violet-700 cursor-pointer"
           >
-            <Database className="w-4 h-4" /> Load Cached
+            <Database className="w-4 h-4" aria-hidden="true" /> Load Cached
           </Button>
         </motion.div>
 
-        {/* Hunting progress */}
+        {/* Hunting progress with typing dots */}
         <AnimatePresence>
           {hunting && (
             <motion.div
@@ -250,13 +250,15 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <Card className="glass-strong rounded-2xl p-6 border-violet-500/30 overflow-hidden">
+              <Card className="bg-white rounded-2xl p-6 border-violet-200 ai-glow overflow-hidden">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="relative">
-                      <Loader2 className="w-5 h-5 text-violet-400 animate-spin" />
+                    <div className="flex gap-1.5 items-center" aria-hidden="true">
+                      <span className="typing-dot"></span>
+                      <span className="typing-dot"></span>
+                      <span className="typing-dot"></span>
                     </div>
-                    <p className="text-sm font-medium">{HUNT_STAGES[stage]}...</p>
+                    <p className="text-sm font-medium text-foreground">{HUNT_STAGES[stage]}...</p>
                   </div>
 
                   {HUNT_STAGES.map((s, i) => {
@@ -266,24 +268,24 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: done || current ? 1 : 0.3, x: 0 }}
+                        animate={{ opacity: done || current ? 1 : 0.4, x: 0 }}
                         className="flex items-center gap-3 pl-2"
                       >
                         <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                           {done ? (
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600" aria-hidden="true" />
                           ) : current ? (
-                            <Loader2 className="w-4 h-4 text-violet-400 animate-spin" />
+                            <Loader2 className="w-4 h-4 text-violet-600 animate-spin" aria-hidden="true" />
                           ) : (
-                            <div className="w-2 h-2 rounded-full bg-white/20" />
+                            <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
                           )}
                         </div>
                         <p
                           className={`text-xs ${
                             done
-                              ? "text-emerald-400/90"
+                              ? "text-emerald-700"
                               : current
-                                ? "text-violet-300"
+                                ? "text-violet-700 font-medium"
                                 : "text-muted-foreground"
                           }`}
                         >
@@ -302,7 +304,8 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-sm text-red-400 bg-red-500/10 rounded-lg p-3 border border-red-500/20"
+            role="alert"
+            className="text-sm text-destructive bg-destructive/5 rounded-lg p-3 border border-destructive/20"
           >
             {error}
           </motion.p>
@@ -317,7 +320,7 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
               className="flex items-end justify-between gap-4 pb-2"
             >
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold">
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
                   {opportunities.length}{" "}
                   <span className="gradient-text">Opportunities</span>
                 </h2>
@@ -332,9 +335,10 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
                   variant="ghost"
                   size="sm"
                   onClick={loadStored}
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground cursor-pointer"
+                  aria-label="Refresh opportunities"
                 >
-                  <RefreshCw className="w-3.5 h-3.5" /> Refresh
+                  <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" /> Refresh
                 </Button>
               )}
             </motion.div>
@@ -358,9 +362,10 @@ export function Dashboard({ profileId, profile }: DashboardProps) {
                   >
                     <Button
                       onClick={() => handleApply(opId, op.title)}
-                      className="w-full bg-gradient-to-r from-violet-600/20 to-indigo-600/20 border border-violet-500/40 text-violet-200 hover:from-violet-600/30 hover:to-indigo-600/30 transition-all"
+                      className="w-full bg-gradient-to-r from-violet-50 to-cyan-50 border border-violet-200 text-violet-700 hover:from-violet-100 hover:to-cyan-100 transition-all cursor-pointer"
+                      aria-label={`Apply via Co-Pilot to ${op.title}`}
                     >
-                      <Sparkles className="w-4 h-4" /> Apply with Co-Pilot
+                      <Sparkles className="w-4 h-4" aria-hidden="true" /> Apply with Co-Pilot
                     </Button>
                   </motion.div>
                 )}

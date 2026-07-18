@@ -106,8 +106,18 @@ Open [http://localhost:3000](http://localhost:3000).
 | Layer        | Technology                                   |
 |--------------|----------------------------------------------|
 | Frontend     | Next.js 16, Tailwind CSS 4, Shadcn UI       |
+| Design       | AI-Native UI (WCAG AA), Fira Sans/Fira Code |
 | Backend      | Python FastAPI                               |
 | AI Models    | Mistral Large (parser), MiniMax M3 (hunter), GPT-OSS-120b (reasoner/copilot) |
 | Router       | OpenRouter (multi-model, free tier)          |
 | Web Search   | Tavily API                                   |
 | Database     | Supabase + pgvector                          |
+
+## Design System
+
+The UI follows the **AI-Native UI** style powered by the [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) design intelligence:
+
+- **Palette:** Violet `#7C3AED` + Cyan `#0891B2` on warm white `#FAF5FF`
+- **Typography:** Fira Sans (headings/body) + Fira Code (data/code)
+- **Accessibility:** WCAG AA — 4.5:1 contrast, visible focus rings, keyboard navigation, `prefers-reduced-motion` respected, semantic HTML, ARIA labels
+- **Effects:** AI typing indicators (3-dot pulse), smooth scroll reveals, count-up score animations, subtle hover lift

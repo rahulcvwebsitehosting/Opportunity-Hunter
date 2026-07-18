@@ -16,11 +16,12 @@ export function ScoreBadge({ score, size = "md" }: ScoreBadgeProps) {
   const circ = 2 * Math.PI * radius;
   const offset = circ - (value / 100) * circ;
 
+  // AI-Native color palette — accessible on white background
   const getColor = (s: number) => {
-    if (s >= 85) return { ring: "#a78bfa", glow: "rgba(167, 139, 250, 0.6)" };
-    if (s >= 70) return { ring: "#60a5fa", glow: "rgba(96, 165, 250, 0.6)" };
-    if (s >= 50) return { ring: "#fbbf24", glow: "rgba(251, 191, 36, 0.6)" };
-    return { ring: "#f87171", glow: "rgba(248, 113, 113, 0.6)" };
+    if (s >= 85) return { ring: "#7C3AED", glow: "rgba(124, 58, 237, 0.25)", text: "#6D28D9" };
+    if (s >= 70) return { ring: "#0891B2", glow: "rgba(8, 145, 178, 0.25)", text: "#0E7490" };
+    if (s >= 50) return { ring: "#D97706", glow: "rgba(217, 119, 6, 0.25)", text: "#B45309" };
+    return { ring: "#DC2626", glow: "rgba(220, 38, 38, 0.25)", text: "#B91C1C" };
   };
 
   const colors = getColor(score);
@@ -34,14 +35,15 @@ export function ScoreBadge({ score, size = "md" }: ScoreBadgeProps) {
         width={dim}
         height={dim}
         className="-rotate-90 absolute inset-0"
-        style={{ filter: `drop-shadow(0 0 6px ${colors.glow})` }}
+        style={{ filter: `drop-shadow(0 0 4px ${colors.glow})` }}
+        aria-hidden="true"
       >
         <circle
           cx={dim / 2}
           cy={dim / 2}
           r={radius}
           fill="none"
-          stroke="rgba(255, 255, 255, 0.08)"
+          stroke="#ECEEF9"
           strokeWidth={stroke}
         />
         <circle
@@ -62,17 +64,14 @@ export function ScoreBadge({ score, size = "md" }: ScoreBadgeProps) {
       <div className="flex flex-col items-center justify-center">
         <span
           ref={ref}
-          className={`font-bold leading-none ${
-            size === "lg" ? "text-3xl" : size === "sm" ? "text-base" : "text-xl"
-          }`}
-          style={{ color: colors.ring }}
+          className={`font-bold leading-none ${size === "lg" ? "text-3xl" : size === "sm" ? "text-base" : "text-xl"}`}
+          style={{ color: colors.text }}
+          aria-label={`Match score: ${score} out of 100`}
         >
           {value}
         </span>
         <span
-          className={`uppercase tracking-wider opacity-60 ${
-            size === "lg" ? "text-[10px]" : "text-[8px]"
-          }`}
+          className={`uppercase tracking-wider text-muted-foreground ${size === "lg" ? "text-[10px]" : "text-[8px]"}`}
         >
           Match
         </span>

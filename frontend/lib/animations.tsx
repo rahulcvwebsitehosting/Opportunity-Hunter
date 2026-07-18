@@ -89,10 +89,17 @@ export function StaggerItem({
 export function useCountUp(target: number, durationMs = 1500) {
   const [value, setValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
+  const preferReduced = typeof window !== "undefined"
+    ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    : false;
   const inView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!inView) return;
+    if (preferReduced) {
+      setValue(target);
+      return;
+    }
     let startTime: number | null = null;
     const step = (ts: number) => {
       if (startTime === null) startTime = ts;
@@ -102,7 +109,7 @@ export function useCountUp(target: number, durationMs = 1500) {
       if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
-  }, [inView, target, durationMs]);
+  }, [inView, target, durationMs, preferReduced]);
 
   return { value, ref };
 }

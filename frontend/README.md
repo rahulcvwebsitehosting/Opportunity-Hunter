@@ -1,6 +1,15 @@
 # Opportunity Hunter — Frontend
 
-A premium, dark-themed, animated AI dashboard that discovers scholarships, hackathons, grants, and internships tailored to a user's profile.
+An AI-Native, accessibility-first dashboard for discovering scholarships, hackathons, grants, and internships tailored to a user's profile.
+
+## Design System
+
+- **Style:** AI-Native UI (light theme, conversational, minimal chrome)
+- **Palette:** Violet `#7C3AED` + Cyan `#0891B2` on warm white `#FAF5FF`
+- **Typography:** Fira Sans / Fira Code (Google Fonts)
+- **Accessibility:** WCAG AA — 4.5:1 contrast, visible focus rings, keyboard nav, `prefers-reduced-motion` respected, semantic HTML, ARIA labels
+- **Effects:** Typing indicators (3-dot pulse), smooth reveals, count-up numbers, subtle hover lift
+- **Mobile:** Responsive 375px / 768px / 1024px / 1440px
 
 ## Tech Stack
 
@@ -13,14 +22,6 @@ A premium, dark-themed, animated AI dashboard that discovers scholarships, hacka
 | Icons       | Lucide React |
 | Language    | TypeScript |
 
-## Design System
-
-- **Theme:** Dark mode (HSL-based, violet/indigo accents)
-- **Surfaces:** Glassmorphism (`glass`, `glass-strong`)
-- **Effects:** Glowing orbs, grid background, noise overlay
-- **Animations:** Scroll-reveal, staggered children, count-up number, animated progress rings, hover lift
-- **Mobile:** Fully responsive with mobile-first breakpoints
-
 ## Getting Started
 
 ```bash
@@ -31,20 +32,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `NEXT_PUBLIC_API_URL` | Backend API base URL | `http://localhost:8000` |
-
-## Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
-| `npm run start` | Start production server |
-
 ## Project Structure
 
 ```
@@ -53,27 +40,26 @@ frontend/
 │   ├── layout.tsx             # Root layout + AnimatedBackground
 │   └── page.tsx               # Onboarding ↔ Dashboard switch
 ├── components/
-│   ├── ui/                    # Shadcn primitives (button, card, etc.)
-│   ├── animated-background.tsx  # Floating orbs + grid + noise
-│   ├── onboarding-form.tsx    # Hero + resume uploader
-│   ├── dashboard.tsx          # Profile + hunt progress + results grid
+│   ├── ui/                    # Shadcn primitives
+│   ├── animated-background.tsx  # Subtle AI orbs + grid
+│   ├── onboarding-form.tsx    # Accessible hero + drag-drop uploader
+│   ├── dashboard.tsx          # Profile card + hunt + results grid
 │   ├── opportunity-card.tsx   # Score ring + collapsible reasoning
-│   ├── score-badge.tsx        # Animated circular progress
-│   └── copilot-modal.tsx      # Cover letter + checklist modal
+│   ├── score-badge.tsx        # Animated circular progress (WCAG alt text)
+│   └── copilot-modal.tsx      # Cover letter + checklist (focus trap, ESC close)
 ├── lib/
 │   ├── api.ts                 # Backend REST client
-│   ├── animations.tsx         # ScrollReveal, StaggerContainer, useCountUp
+│   ├── animations.tsx         # ScrollReveal, Stagger, useCountUp (reduced-motion aware)
 │   └── utils.ts               # cn() helper
 └── styles/
-    └── globals.css           # Theme tokens + custom animations
+    └── globals.css           # Theme tokens + WCAG-compliant focus rings + reduced-motion
 ```
 
-## Key UI Components
+## Environment Variables
 
-- **ScoreBadge** — Circular SVG progress ring with count-up animation
-- **OpportunityCard** — Match score strip, expandable AI reasoning (✔/✘ checks), effort/ROI badges
-- **CopilotModal** — Generated cover letter with copy/download + numbered application checklist
-- **AnimatedBackground** — Three drifting gradient orbs + grid pattern
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `NEXT_PUBLIC_API_URL` | Backend API base URL | `http://localhost:8000` |
 
 ## Deployment
 
@@ -89,5 +75,5 @@ Set `NEXT_PUBLIC_API_URL` to your deployed backend URL in the Vercel dashboard.
 
 | Route | Purpose |
 |-------|---------|
-| `/` | Onboarding form (drag-and-drop PDF / paste text + GitHub URL) |
-| `/` (post-onboard) | Dashboard with profile, "Run Hunter Agent", opportunity grid, Co-Pilot modal |
+| `/` | Accessible onboarding (drag-drop PDF / text + GitHub) with typing-dot loading |
+| `/` (post-onboard) | Dashboard: AI profile → Hunter Agent → scored opportunity grid → Co-Pilot modal |

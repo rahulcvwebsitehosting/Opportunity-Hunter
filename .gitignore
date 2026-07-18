@@ -19,6 +19,7 @@ temp_*
 !package.json
 !tsconfig.json
 !components.json
+!vercel.json
 test_*.json
 
 # OS

@@ -5,40 +5,37 @@ import { motion } from "framer-motion";
 export function AnimatedBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Grid bg */}
-      <div className="absolute inset-0 grid-bg opacity-40" />
+      {/* Subtle grid */}
+      <div className="absolute inset-0 grid-bg opacity-50" />
 
-      {/* Glowing orbs */}
+      {/* Soft AI orbs - light theme, gentle motion */}
       <motion.div
-        className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full"
+        className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle, rgba(167, 139, 250, 0.25) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%)",
         }}
-        animate={{ x: [0, 100, 0], y: [0, 80, 0] }}
+        animate={{ x: [0, 80, 0], y: [0, 60, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute top-1/4 -right-40 w-[420px] h-[420px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(8, 145, 178, 0.10) 0%, transparent 70%)",
+        }}
+        animate={{ x: [0, -100, 0], y: [0, 80, 0] }}
+        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute -bottom-40 left-1/3 w-[360px] h-[360px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(167, 139, 250, 0.08) 0%, transparent 70%)",
+        }}
+        animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
-        className="absolute top-1/3 -right-40 w-[450px] h-[450px] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(96, 165, 250, 0.22) 0%, transparent 70%)",
-        }}
-        animate={{ x: [0, -120, 0], y: [0, 100, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -bottom-40 left-1/3 w-[400px] h-[400px] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(244, 114, 182, 0.18) 0%, transparent 70%)",
-        }}
-        animate={{ x: [0, 60, 0], y: [0, -60, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Noise overlay */}
-      <div className="absolute inset-0 noise" />
     </div>
   );
 }
