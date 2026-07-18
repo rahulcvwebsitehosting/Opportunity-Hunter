@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: "Opportunity Hunter — AI Agent for Scholarships & Hackathons",
   description:
     "Never miss a life-changing opportunity again. Upload your resume — the AI hunts scholarships, hackathons, and internships tailored to you.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
