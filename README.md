@@ -25,11 +25,11 @@ Opportunity Hunter is an autonomous AI agent that finds scholarships, hackathons
 
 ## 🧠 Development Story & AI Stack
 
-### Built by **GPT-5.6** + **Codex (Claude Code)**
+### Built by **GPT-5.6** + **Codex (OpenAI)**
 
 Not gonna bury the lede here. **GPT-5.6 wrote almost everything** — the full backend architecture, all four agent loops (Profiler, Hunter, Reasoner, Co-Pilot), the `llm_router.py` that handles model routing, every FastAPI route (`/onboard`, `/hunt`, `/opportunities`, `/apply`), the frontend in Next.js with Tailwind and Shadcn, even the Supabase schema with pgvector. The split-deployment model (Vercel frontend, Railway backend, Supabase database) was GPT-5.6's design too.
 
-**Codex (Claude Code)** was the other half of this. It handled the iterative loop — debugging sessions, fixing build errors, optimizing slow endpoints, refactoring components that felt off. Accessibility (WCAG AA stuff, focus traps, keyboard nav, `prefers-reduced-motion`) was all Codex. Everytime something broke, Codex traced it, patched it, and the fix went back into the cycle.
+**Codex (OpenAI)** was the other half of this. It handled the iterative loop — debugging sessions, fixing build errors, optimizing slow endpoints, refactoring components that felt off. Accessibility (WCAG AA stuff, focus traps, keyboard nav, `prefers-reduced-motion`) was all Codex. Everytime something broke, Codex traced it, patched it, and the fix went back into the cycle.
 
 I also swapped in other models for specific tasks — **GLM 5.2**, **DeepSeek V4 Pro**, **Mistral Large 3** — to generate and compare different module-level approaches. But the core architecture, the agent logic, the deployment configs? That's GPT-5.6 and Codex.
 
@@ -222,7 +222,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## 🛠️ Built With
 
-**AI:** [GPT-5.6](https://openai.com) · [Codex (Claude Code)](https://anthropic.com/codex) · [GPT-OSS-120b](https://nvidia.com/nim) · [DeepSeek V4 Pro](https://deepseek.com) · [Mistral Large 3](https://mistral.ai) · [GLM 5.2](https://zhipu.ai) · [MiniMax M3](https://minimax.io) · [Gemini 3.5 Flash](https://deepmind.google) · [whisper-large-v3](https://nvidia.com/nim) · [NV-Embed-v1](https://nvidia.com/nim)
+**AI:** [GPT-5.6](https://openai.com) · [Codex](https://openai.com/codex) · [GPT-OSS-120b](https://nvidia.com/nim) · [DeepSeek V4 Pro](https://deepseek.com) · [Mistral Large 3](https://mistral.ai) · [GLM 5.2](https://zhipu.ai) · [MiniMax M3](https://minimax.io) · [Gemini 3.5 Flash](https://deepmind.google) · [whisper-large-v3](https://nvidia.com/nim) · [NV-Embed-v1](https://nvidia.com/nim)
 
 **Framework:** [Next.js 16](https://nextjs.org) · [FastAPI](https://fastapi.tiangolo.com) · [Supabase pgvector](https://supabase.com) · [Vercel](https://vercel.com) · [Railway](https://railway.com)
 
@@ -244,5 +244,5 @@ Open [http://localhost:3000](http://localhost:3000).
 <p align="center">
   Made by <a href="https://github.com/rahulcvwebsitehosting">@rahulcvwebsitehosting</a>
   <br/>
-  <strong>Built by GPT-5.6 + Codex (Claude Code)</strong>
+  <strong>Built by GPT-5.6 + Codex (OpenAI)</strong>
 </p>
